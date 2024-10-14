@@ -31,7 +31,7 @@
                     <a href="{{ route('admin.asset.asset-type.list') }}"><i class='bx bx-radio-circle'></i>Assest Type</a>
                 </li>
                 <li>
-                    <a href="javascript:;"><i class='bx bx-radio-circle'></i>Brand</a>
+                    <a href="{{ route('admin.brand-data.brand')}}"><i class='bx bx-radio-circle'></i>Brand</a>
                 </li>
                 <li> <a href="javascript:;"><i class='bx bx-radio-circle'></i>Supplier</a>
                 </li>

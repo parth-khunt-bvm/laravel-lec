@@ -18,25 +18,21 @@
                 <div class="card">
                     <div class="card-body">
                         <!-- Laravel Form with POST method -->
-                        <form action="{{ route('admin.asset.asset-type.store') }}" method="POST" id="add-asset">
+                        <form action="{{route('admin.brand-data.storebrand')}}" method="POST" id="add-brand">
                             @csrf 
 
                             <!-- Type -->
                             <div class="mb-3">
-                                <label class="form-label">Type:</label>
-                                <input type="text" name="type" id="type" class="form-control" value="{{ old('type') }}" placeholder="Enter asset type">
-                                @error('type')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <label class="form-label">Brand:</label>
+                                <input type="text" name="brand" id="brand" class="form-control" value="{{ old('brand') }}" placeholder="Enter asset type">
+                                
                             </div>
 
                             <!-- Short Code -->
                             <div class="mb-3">
-                                <label class="form-label">Short Code:</label>
-                                <input type="text" name="short_code" id="short_code" class="form-control" value="{{ old('short_code') }}" placeholder="Enter short code">
-                                @error('short_code')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                <label class="form-label">Brand Code:</label>
+                                <input type="text" name="brand_code" id="brand_code" class="form-control" value="{{ old('brand_code') }}" placeholder="Enter short code">
+                               
                             </div>
 
                             <!-- Status -->
@@ -47,9 +43,7 @@
                                     <option value="A" id="active" {{ old('status') == 'A' ? 'selected' : '' }}>Active</option>
                                     <option value="I"  id="inactive" {{ old('status') == 'I' ? 'selected' : '' }}>Inactive</option>
                                 </select>
-                                @error('status')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
+                                
                             </div>
 
                             <!-- Submit Button -->

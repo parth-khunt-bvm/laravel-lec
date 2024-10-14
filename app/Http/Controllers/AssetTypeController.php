@@ -18,20 +18,31 @@ class AssetTypeController extends Controller
         return view('pages.asset-type.add');
     }
 
-    public function store(Request $request)
+    public function store(Request $postData)
     {
         // Validation
-        $request->validate([
+        $postData->validate([
             'type' => 'required|string|max:255',
             'short_code' => 'required|string|max:10|unique:asset_types,short_code',
             'status' => 'required|in:A,I',
-        ]);
+        ],    
+        [
+            'type.required' => 'The asset type is required.',
+            'type.string' => 'The asset type must be a valid string.',
+            'type.max' => 'The asset type cannot exceed 255 characters.',
+            'short_code.required' => 'The short code is required.',
+            'short_code.string' => 'The short code must be a valid string.',
+            'short_code.max' => 'The short code cannot exceed 10 characters.',
+            'status.required' => 'The status is required.',
+            'status.in' => 'The status must be either "A" (Active) or "I" (Inactive).',
+        ]
+        );
 
         // Store asset type in the database
         AssetType::create([
-            'type' => $request->type,
-            'short_code' => $request->short_code,
-            'status' => $request->status,
+            'type' => $postData->type,
+            'short_code' => $postData->short_code,
+            'status' => $postData->status,
         ]);
 
         return redirect()->route('admin.asset.asset-type.list')->with('success', 'Asset added successfully');
@@ -54,11 +65,22 @@ class AssetTypeController extends Controller
         $request->validate([
             'type' => 'required|string|max:255',
             'short_code' => 'required|string|max:10', // ignore current id for unique check
-            'status' => 'required|in:A,I',
-        ]);
+            'status' => 'required|in:A,I', 
+        ],
+        [
+            'type.required' => 'The asset type is required.',
+            'type.string' => 'The asset type must be a valid string.',
+            'type.max' => 'The asset type cannot exceed 255 characters.',
+            'short_code.required' => 'The short code is required.',
+            'short_code.string' => 'The short code must be a valid string.',
+            'short_code.max' => 'The short code cannot exceed 10 characters.',
+            'status.required' => 'The status is required.',
+            'status.in' => 'The status must be either "A" (Active) or "I" (Inactive).',
+        ]
+        );
 
         // Find the asset type by ID and update it
-        $assetType = AssetType::findOrFail($assestId);
+        $assetType = AssetType::findOrFail($assestId);        
         $assetType->update([
             'type' => $request->type,
             'short_code' => $request->short_code,

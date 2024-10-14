@@ -39,7 +39,7 @@
                             <tbody>
                                 @foreach ($asset_type as $keys=>$value)
                                     <tr>
-                                        <th scope="row">{{ $keys+1 }}</th>
+                                        <td scope="row">{{ $keys+1 }}</td>
                                         <td>{{ $value['type'] }}</td>
                                         <td>{{ $value['short_code'] }}</td>
                                         <td>
